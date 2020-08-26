@@ -8,9 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name="Location.findAll", query="Slelect l from Location l"),
+	@NamedQuery(name="Location.findDepartmentById", query = "select l from Location l left outer join fetch l.departments where l.locationId=:locationId")
+})
+
 public class Location {
 	
 	@Id

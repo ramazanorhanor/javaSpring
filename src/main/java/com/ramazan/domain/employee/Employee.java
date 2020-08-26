@@ -11,10 +11,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Employee.findAll",query = "select e from employee e"),
+	@NamedQuery(name = "Employee.findFullById",query = "select e from employee e left outer fetch e.job left join fetch e.department where e.employeeId=: employeeId  "),
+	@NamedQuery(name = "Employee.count",query = "select count(e) from Employee e ")
+})
+
 public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -8,9 +8,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "job.findAll",query = "select j from Job j"),
+	@NamedQuery(name = "job.findAllByJobTitle",query = "select j from job j where j.JobTitle=:JobTitle"),
+	@NamedQuery(name = "job.findEmployeeById",query = "select j from job j left outer join fetch j.employees where j.JobId=:JobId ")
+})
+
 public class Job {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">            
+            
+   <persistence-unit name="my-pu">    
+      <!-- <jta-data-source>java:/DefaultDS</jta-data-source> -->
+      
+      <class>com.ramazan.domain.employee.Department</class>
+      <class>com.ramazan.domain.employee.Employee</class>
+      <class>com.ramazan.domain.employee.Job</class>
+      <class>com.ramazan.domain.employee.Location</class>
+      <properties>
+         <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/employee"/>
+         <property name="javax.persistence.jdbc.user" value="root"/>
+          <property name="javax.persistence.jdbc.password" value="12345"/>
+          
+          <property name="hinernate.show_sql" value="true"/>
+          <property name="hiberante.format_sql" value="true"/>
+          <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+          <property name="hibernate.hbm2dll.auto" value="create-drop"/>
+<!--            <property name="hibernate.hbm2dll.auto" value="update"/> -->
+
+<!--https://docs.jboss.org/hibernate/orm/5.2/javadocs/org/hibernate/engine/jdbc/connections/spi/ConnectionProvider.html -->
+<!--https://docs.jboss.org/hibernate/orm/4.1/javadocs/org/hibernate/service/jdbc/connections/spi/ConnectionProvider.html -->
+<property name="hibernate.connection.provider_class" value="org.hibernate.connections.C3P0ConnectionProvider"/>
+<property name="hibernate.c3p0.min_size" value="5"/>
+<property name="hibernate.c3p0.max_size" value="100"/>
+<property name="hibernate.c3p0.timeout" value="500"/>
+<property name="hibernate.c3p0.max_statements" value="50"/>
+<property name="hibernate.c3p0.idle_test_period" value="2000"/>
+ 
+ </properties>
+   </persistence-unit>
+</persistence>
+
+
+
+
+
+
+
+
+
+<!-- https://dzone.com/articles/jpa-tutorial-setting -->
